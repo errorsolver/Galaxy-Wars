@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnbb6gxgrr26g"]
+
+[ext_resource type="Script" path="res://source/Follow Mouse/musuh.gd" id="1_t0d33"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vn2ed"]
+size = Vector2(100, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gv0ss"]
+size = Vector3(100, 100, 1)
+
+[node name="Musuh" type="Area2D"]
+script = ExtResource("1_t0d33")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vn2ed")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource("BoxMesh_gv0ss")
