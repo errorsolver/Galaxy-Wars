@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b2a0m5jdtw1tg"]
 
-[ext_resource type="Script" path="res://source/Follow Mouse/character_body_2d.gd" id="1_chelg"]
-[ext_resource type="PackedScene" uid="uid://dnbb6gxgrr26g" path="res://source/Follow Mouse/musuh.tscn" id="2_2plf1"]
+[ext_resource type="Script" path="res://source/Follow Mouse/character_body_2d.gd" id="1_2ayw7"]
+[ext_resource type="PackedScene" uid="uid://dnbb6gxgrr26g" path="res://source/Follow Mouse/musuh.tscn" id="2_x6dqg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5t4y3"]
 radius = 100.0
@@ -14,7 +14,7 @@ height = 100.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(620, 533)
-script = ExtResource("1_chelg")
+script = ExtResource("1_2ayw7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CircleShape2D_5t4y3")
@@ -28,7 +28,7 @@ mesh = SubResource("SphereMesh_0vuhh")
 wait_time = 1.5
 autostart = true
 
-[node name="Musuh" parent="." instance=ExtResource("2_2plf1")]
+[node name="Musuh" parent="." instance=ExtResource("2_x6dqg")]
 position = Vector2(620, 178)
 
 [connection signal="timeout" from="CharacterBody2D/Timer" to="CharacterBody2D" method="_on_timer_timeout"]
