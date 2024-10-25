@@ -1,18 +1,26 @@
 [gd_scene load_steps=4 format=3 uid="uid://dnbb6gxgrr26g"]
 
 [ext_resource type="Script" path="res://source/Follow Mouse/musuh.gd" id="1_t0d33"]
+[ext_resource type="Texture2D" uid="uid://cdvn37cbpskq5" path="res://source/Spraits/fighter jet/Spritefighterjet.png" id="2_k26jg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vn2ed"]
-size = Vector2(100, 100)
-
-[sub_resource type="BoxMesh" id="BoxMesh_gv0ss"]
-size = Vector3(100, 100, 1)
+size = Vector2(62, 64)
 
 [node name="Musuh" type="Area2D"]
+rotation = 3.14159
 script = ExtResource("1_t0d33")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_vn2ed")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-mesh = SubResource("BoxMesh_gv0ss")
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.66103e-06, 19)
+scale = Vector2(0.408206, 0.408206)
+texture = ExtResource("2_k26jg")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
