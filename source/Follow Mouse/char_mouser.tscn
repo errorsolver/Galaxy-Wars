@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://cid6yt3sgx307"]
+
+[ext_resource type="Script" path="res://source/Follow Mouse/char_move_mouse.gd" id="1_cu0ab"]
+[ext_resource type="Texture2D" uid="uid://crfs53emigyjo" path="res://source/Spraits/plane/Sprite Plane.png" id="2_i0yhg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5t4y3"]
+radius = 23.0217
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(620, 533)
+script = ExtResource("1_cu0ab")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.6
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3, -19)
+scale = Vector2(0.429688, 0.429688)
+texture = ExtResource("2_i0yhg")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_5t4y3")
+debug_color = Color(0.838114, 0.377495, 0.212234, 0.42)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
