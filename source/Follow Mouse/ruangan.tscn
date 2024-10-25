@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2a0m5jdtw1tg"]
+
+[ext_resource type="Script" path="res://source/Follow Mouse/pemain.gd" id="1_cmwgw"]
+[ext_resource type="Script" path="res://source/Follow Mouse/ruangan.gd" id="1_j603u"]
+[ext_resource type="Texture2D" uid="uid://crfs53emigyjo" path="res://source/Spraits/plane/Sprite Plane.png" id="2_gi02b"]
+[ext_resource type="PackedScene" uid="uid://dnbb6gxgrr26g" path="res://source/Follow Mouse/musuh.tscn" id="2_jk6st"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5t4y3"]
+radius = 30.0
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_j603u")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(620, 533)
+script = ExtResource("1_cmwgw")
+
+[node name="Timer" type="Timer" parent="CharacterBody2D"]
+wait_time = 1.5
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(2.99999, -19)
+scale = Vector2(0.423828, 0.423828)
+texture = ExtResource("2_gi02b")
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+shape = SubResource("CircleShape2D_5t4y3")
+debug_color = Color(0.838114, 0.377495, 0.212234, 0.42)
+
+[node name="Musuh" parent="." instance=ExtResource("2_jk6st")]
+position = Vector2(871, 145)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 23.0
+offset_top = 23.0
+offset_right = 111.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 30
+text = "Score:"
+
+[node name="Angka" type="Label" parent="."]
+offset_left = 122.0
+offset_top = 24.0
+offset_right = 210.0
+offset_bottom = 66.0
+theme_override_font_sizes/font_size = 30
+text = "0"
+
+[connection signal="timeout" from="CharacterBody2D/Timer" to="CharacterBody2D" method="_on_timer_timeout"]
+[connection signal="area_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

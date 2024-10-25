@@ -1,17 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://dlcblva6ohp5o"]
 
 [ext_resource type="Script" path="res://source/Follow Mouse/peluru.gd" id="1_78qfn"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_bng2u"]
+[ext_resource type="Texture2D" uid="uid://bhvxsfxlhqffs" path="res://source/Spraits/plane/bullet.png" id="2_mm58p"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_50u3r"]
+radius = 6.0
+height = 28.0
 
 [node name="Peluru" type="Area2D"]
 script = ExtResource("1_78qfn")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-scale = Vector2(13.5, 28.5)
-mesh = SubResource("CapsuleMesh_bng2u")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_50u3r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 4)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_mm58p")
