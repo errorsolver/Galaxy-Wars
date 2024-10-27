@@ -6,7 +6,6 @@ const MUSUH = preload("res://source/Follow Mouse/musuh.tscn")
 func _ready() -> void:
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -18,6 +17,11 @@ func munculkanMusuh():
 	musuh.position = Vector2(1, 0) * random * get_viewport().size.x
 	add_child(musuh)
 
-
 func _on_timer_timeout() -> void:
 	munculkanMusuh()
+
+
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	if !area.is_in_group('player'):
+		print('cleared: ', area.name)
+		area.queue_free()

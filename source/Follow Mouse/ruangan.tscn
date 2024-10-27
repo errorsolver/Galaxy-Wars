@@ -1,57 +1,168 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2a0m5jdtw1tg"]
+[gd_scene load_steps=9 format=3 uid="uid://b2a0m5jdtw1tg"]
 
-[ext_resource type="Script" path="res://source/Follow Mouse/pemain.gd" id="1_cmwgw"]
 [ext_resource type="Script" path="res://source/Follow Mouse/ruangan.gd" id="1_j603u"]
-[ext_resource type="Texture2D" uid="uid://crfs53emigyjo" path="res://source/Spraits/plane/Sprite Plane.png" id="2_gi02b"]
-[ext_resource type="PackedScene" uid="uid://dnbb6gxgrr26g" path="res://source/Follow Mouse/musuh.tscn" id="2_jk6st"]
+[ext_resource type="PackedScene" uid="uid://bqamnsfgjcgey" path="res://source/Follow Mouse/player.tscn" id="2_khn6e"]
+[ext_resource type="Script" path="res://source/Follow Mouse/progress_bar.gd" id="4_ckhr0"]
+[ext_resource type="Script" path="res://source/Follow Mouse/canvas_layer.gd" id="4_xaaw7"]
+[ext_resource type="Script" path="res://source/Follow Mouse/poin.gd" id="6_i4wyh"]
+[ext_resource type="Script" path="res://source/Follow Mouse/parallax_layer.gd" id="7_qf13v"]
+[ext_resource type="Texture2D" uid="uid://dr0ly4ka8vqd2" path="res://source/BackgroundImage/istockphoto-1354982067-612x612.jpg" id="7_ur51e"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5t4y3"]
-radius = 30.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xmhrf"]
+size = Vector2(1280, 720)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_j603u")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(620, 533)
-script = ExtResource("1_cmwgw")
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="Timer" type="Timer" parent="CharacterBody2D"]
-wait_time = 1.5
-autostart = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(640, 360)
+shape = SubResource("RectangleShape2D_xmhrf")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-position = Vector2(2.99999, -19)
-scale = Vector2(0.423828, 0.423828)
-texture = ExtResource("2_gi02b")
-
-[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
-shape = SubResource("CircleShape2D_5t4y3")
-debug_color = Color(0.838114, 0.377495, 0.212234, 0.42)
-
-[node name="Musuh" parent="." instance=ExtResource("2_jk6st")]
-position = Vector2(871, 145)
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_khn6e")]
+position = Vector2(599, 574)
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
 autostart = true
 
-[node name="Label" type="Label" parent="."]
-offset_left = 23.0
-offset_top = 23.0
-offset_right = 111.0
-offset_bottom = 65.0
+[node name="CanvasLayerControl" type="CanvasLayer" parent="."]
+script = ExtResource("4_xaaw7")
+
+[node name="Control" type="Control" parent="CanvasLayerControl"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayerControl/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -180.0
+offset_right = 150.0
+offset_bottom = -30.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+pivot_offset = Vector2(-26.8125, 176.234)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="GridContainer1" type="HBoxContainer" parent="CanvasLayerControl/Control/VBoxContainer"]
+layout_direction = 1
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+alignment = 1
+
+[node name="Top" type="Button" parent="CanvasLayerControl/Control/VBoxContainer/GridContainer1"]
+custom_minimum_size = Vector2(100, 40)
+layout_direction = 1
+layout_mode = 2
+action_mode = 0
+text = "TOP"
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayerControl/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer2" type="HBoxContainer" parent="CanvasLayerControl/Control/VBoxContainer"]
+layout_direction = 1
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+alignment = 1
+
+[node name="Left" type="Button" parent="CanvasLayerControl/Control/VBoxContainer/GridContainer2"]
+custom_minimum_size = Vector2(50, 40)
+layout_mode = 2
+action_mode = 0
+text = "Left"
+
+[node name="VSeparator" type="VSeparator" parent="CanvasLayerControl/Control/VBoxContainer/GridContainer2"]
+layout_mode = 2
+
+[node name="Right" type="Button" parent="CanvasLayerControl/Control/VBoxContainer/GridContainer2"]
+custom_minimum_size = Vector2(50, 40)
+layout_mode = 2
+action_mode = 0
+text = "Right"
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayerControl/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer3" type="HBoxContainer" parent="CanvasLayerControl/Control/VBoxContainer"]
+layout_direction = 1
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+alignment = 1
+
+[node name="Down" type="Button" parent="CanvasLayerControl/Control/VBoxContainer/GridContainer3"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+action_mode = 0
+text = "Bottom"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.195
+anchor_bottom = 0.126
+offset_left = 15.0
+offset_top = 55.0
+offset_right = -0.600006
+offset_bottom = 0.279999
+script = ExtResource("4_ckhr0")
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+offset_left = 15.295
+offset_top = 15.295
+offset_right = 103.295
+offset_bottom = 57.295
 theme_override_font_sizes/font_size = 30
 text = "Score:"
 
-[node name="Angka" type="Label" parent="."]
-offset_left = 122.0
-offset_top = 24.0
-offset_right = 210.0
-offset_bottom = 66.0
+[node name="Poin" type="Label" parent="CanvasLayer"]
+offset_left = 108.0
+offset_top = 16.0
+offset_right = 246.0
+offset_bottom = 58.0
 theme_override_font_sizes/font_size = 30
 text = "0"
+script = ExtResource("6_i4wyh")
 
-[connection signal="timeout" from="CharacterBody2D/Timer" to="CharacterBody2D" method="_on_timer_timeout"]
-[connection signal="area_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_area_entered"]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(0, 730)
+script = ExtResource("7_qf13v")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
+position = Vector2(642, 360)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("7_ur51e")
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="child_entered_tree" from="." to="CanvasLayer/Poin" method="_on_node_2d_child_entered_tree"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="healthPlayerSignal" from="CharacterBody2D" to="CanvasLayer/ProgressBar" method="_on_character_body_2d_health_player_signal"]
+[connection signal="playerMati" from="CharacterBody2D" to="CanvasLayer/Poin" method="_on_character_body_2d_player_mati"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="button_up" from="CanvasLayerControl/Control/VBoxContainer/GridContainer1/Top" to="CharacterBody2D" method="_on_top_button_up"]
+[connection signal="pressed" from="CanvasLayerControl/Control/VBoxContainer/GridContainer1/Top" to="CharacterBody2D" method="_on_top_pressed"]
+[connection signal="button_up" from="CanvasLayerControl/Control/VBoxContainer/GridContainer2/Left" to="CharacterBody2D" method="_on_left_button_up"]
+[connection signal="pressed" from="CanvasLayerControl/Control/VBoxContainer/GridContainer2/Left" to="CharacterBody2D" method="_on_left_pressed"]
+[connection signal="button_up" from="CanvasLayerControl/Control/VBoxContainer/GridContainer2/Right" to="CharacterBody2D" method="_on_right_button_up"]
+[connection signal="pressed" from="CanvasLayerControl/Control/VBoxContainer/GridContainer2/Right" to="CharacterBody2D" method="_on_right_pressed"]
+[connection signal="button_up" from="CanvasLayerControl/Control/VBoxContainer/GridContainer3/Down" to="CharacterBody2D" method="_on_down_button_up"]
+[connection signal="pressed" from="CanvasLayerControl/Control/VBoxContainer/GridContainer3/Down" to="CharacterBody2D" method="_on_down_pressed"]

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdvn37cbpskq5"
 path.s3tc="res://.godot/imported/Spritefighterjet.png-0dd7326bac4236911e1e7ed56aa9d381.s3tc.ctex"
+path.etc2="res://.godot/imported/Spritefighterjet.png-0dd7326bac4236911e1e7ed56aa9d381.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://source/Spraits/fighter jet/Spritefighterjet.png"
-dest_files=["res://.godot/imported/Spritefighterjet.png-0dd7326bac4236911e1e7ed56aa9d381.s3tc.ctex"]
+dest_files=["res://.godot/imported/Spritefighterjet.png-0dd7326bac4236911e1e7ed56aa9d381.s3tc.ctex", "res://.godot/imported/Spritefighterjet.png-0dd7326bac4236911e1e7ed56aa9d381.etc2.ctex"]
 
 [params]
 

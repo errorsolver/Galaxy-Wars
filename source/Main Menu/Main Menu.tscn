@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dprd1uvkpgvjh"]
+[gd_scene load_steps=4 format=3 uid="uid://dprd1uvkpgvjh"]
 
 [ext_resource type="Script" path="res://source/Main Menu/main_menu.gd" id="1_xdf3f"]
+[ext_resource type="Script" path="res://source/Follow Mouse/parallax_layer.gd" id="2_vg2pl"]
+[ext_resource type="Texture2D" uid="uid://dr0ly4ka8vqd2" path="res://source/BackgroundImage/istockphoto-1354982067-612x612.jpg" id="3_d2dbo"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -64,6 +66,19 @@ text = "Mulai"
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Keluar"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(0, 730)
+script = ExtResource("2_vg2pl")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
+position = Vector2(642, 360)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_d2dbo")
 
 [connection signal="pressed" from="BoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="BoxContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
