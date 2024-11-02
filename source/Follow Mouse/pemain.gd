@@ -54,7 +54,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			#HS.score = int($"../Angka".text)
 		emit_signal('playerMati', true)
 		
-		get_tree().change_scene_to_packed(MAIN_MENU)
+		get_tree().call_deferred('change_scene_to_packed', MAIN_MENU)
 
 
 
